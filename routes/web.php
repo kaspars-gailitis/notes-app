@@ -17,3 +17,6 @@ Route::get('/', function () {
 Route::get('/text', function (){
     return view('textTest');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
