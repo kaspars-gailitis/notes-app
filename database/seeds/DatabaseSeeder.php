@@ -20,5 +20,8 @@ class DatabaseSeeder extends Seeder
       DB::table('note_type')->insert([
         'type_name' => 'collaborative ',
       ]);
+      DB::table('tags')->insert([
+        'tag_content' => 'task',
+      ]);
     }
 }
