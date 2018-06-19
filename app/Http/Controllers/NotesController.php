@@ -17,16 +17,26 @@ class NotesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($sort)
     {
-      $notes = Note::where('user_id', Auth::user()->id)
-                ->where('type_id', '!=', 2)
-                ->orderBy('updated_at', 'DESC')
-                ->get();
+      if($sort == 1){
+        $notes = Note::where('user_id', Auth::user()->id)
+                  ->where('type_id', '!=', 2)
+                  ->orderBy('title', 'ASC')
+                  ->get();
+        return view('home', [
+            'notes' => $notes
+        ]);
+      } if($sort == 2) {
+        $notes = Note::where('user_id', Auth::user()->id)
+                  ->where('type_id', '!=', 2)
+                  ->orderBy('updated_at', 'DESC')
+                  ->get();
 
-      return view('home', [
-          'notes' => $notes
-      ]);
+        return view('home', [
+            'notes' => $notes
+        ]);
+      }
     }
 
     /**
@@ -98,7 +108,7 @@ class NotesController extends Controller
         $note->user_id = Auth::user()->id;
         $note->type_id = $type;
         $note->save();
-        return redirect('/home');
+        return redirect('/home/2');
 
       }
     }
@@ -112,12 +122,14 @@ class NotesController extends Controller
     public function show($id)
     {
         $note = Note::findOrFail($id);
-        $rawTags = Tag::findOrFail($note->tag_id);
-        $tags = explode(", ", $rawTags->tag_content);
-        return view('show_note', [
-            'note' => $note,
-            'tags' => $tags
-        ]);
+        if($note->user_id == Auth::user()->id){
+          $rawTags = Tag::findOrFail($note->tag_id);
+          $tags = explode(", ", $rawTags->tag_content);
+          return view('show_note', [
+              'note' => $note,
+              'tags' => $tags
+          ]);
+      } else {return redirect('/home/2');}
     }
 
     /**
@@ -129,12 +141,13 @@ class NotesController extends Controller
     public function edit($id)
     {
       $note = Note::findOrFail($id);
-      $tag = Tag::findOrFail($note->tag_id);
-      return view('edit_note', [
-          'note' => $note,
-          'tag' => $tag,
-      ]);
-
+      if($note->user_id == Auth::user()->id){
+        $tag = Tag::findOrFail($note->tag_id);
+        return view('edit_note', [
+            'note' => $note,
+            'tag' => $tag,
+        ]);
+      } else {return redirect('/home/2');}
     }
 
     /**
@@ -155,7 +168,7 @@ class NotesController extends Controller
       Tag::where('id',$note->tag_id)
         ->update(['tag_content' => $request->tags,
                 ]);
-      return redirect('/home');
+      return redirect('/home/2');
     }
 
     /**
@@ -167,12 +180,14 @@ class NotesController extends Controller
     public function destroy($id)
     {
       $note = Note::findOrFail($id);
-      if($note->type_id == 2){
-        $note->delete();
-        return redirect('/tasks');
-      } else {
-        $note->delete();
-        return redirect('/home');
-      }
-    }
+      if($note->user_id == Auth::user()->id){
+        if($note->type_id == 2){
+          $note->delete();
+          return redirect('/tasks');
+        } else {
+          $note->delete();
+          return redirect('/home/2');
+        }
+    } else {return redirect('/home/2');}
+}
 }

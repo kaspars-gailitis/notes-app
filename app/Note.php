@@ -24,6 +24,6 @@ class Note extends Model
     }
 
     public function formatTime() {
-        return Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at)->format('d-m-Y H:i');
+        return Carbon::createFromFormat('Y-m-d H:i:s',$this->updated_at)->format('d-m-Y H:i');
     }
 }

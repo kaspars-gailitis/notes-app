@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('set/{locale}', 'HomeController@userLocale')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,13 +22,15 @@ Route::get('/text', function (){
     return view('textTest');
 });
 Auth::routes();
-Route::get('/home', 'NotesController@index')->middleware('auth');
+Route::get('/home/{sort}', 'NotesController@index')->middleware('auth');
 Route::get('new/note', 'NotesController@newNote')->middleware('auth');
-
 Route::get('show/{id}', 'NotesController@show')->middleware('auth');
 Route::post('edit/{id}', 'NotesController@edit')->middleware('auth');
 Route::put('update/{id}', 'NotesController@update')->middleware('auth');
-Route::get('new/colab', 'NotesController@newColab')->middleware('auth');
+Route::get('/clusters', 'ClusterController@index')->middleware('auth');
+Route::get('/clusters/create', 'ClusterController@create')->middleware('auth');
 Route::get('/tasks', 'NotesController@tasks')->middleware('auth');
 Route::delete('delete/{id}', 'NotesController@destroy')->middleware('auth');
 Route::post('store/{type}', 'NotesController@store')->middleware('auth');
+Route::post('/cluster/new', 'ClusterController@store')->middleware('auth');
+Route::get('/cluster/show/{id}', 'ClusterController@show')->middleware('auth');

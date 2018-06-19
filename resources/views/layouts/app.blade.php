@@ -52,12 +52,24 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                          <li><a class="nav-link" href="{{ url('/clusters') }}">{{ __('clusters |') }}</a></li>
                           <li><a class="nav-link" href="{{ url('tasks') }}">{{ __('my to-do list |') }}</a></li>
-                          <li><a class="nav-link" href="{{ url('new/note') }}">{{ __('new note |') }}</a></li>
-                          <li><a class="nav-link" href="{{ url('new/colab') }}">{{ __('new collaborative note') }}</a></li>
+                          <li><a class="nav-link" href="{{ url('new/note') }}">{{ __('new note') }}</a></li>
 
                         </ul>
                         <ul class="navbar-nav navbar-right">
+                          <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                language <span class="caret"></span>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="/set/fr">French
+                                  </a>
+                                  <a class="dropdown-item" href="/set/en">English
+                                  </a>
+                                </div>
+                            </a>
+                          </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

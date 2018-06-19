@@ -68,7 +68,7 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                     @auth
-                <script>window.location = "/home";</script>
+                <script>window.location ="{{ url('home/2') }}";</script>
                     @else
                       <div class="content">
                           <div class="title m-b-md">
