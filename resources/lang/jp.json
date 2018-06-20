@@ -37,7 +37,12 @@
     "task":"タスク",
     "add task":"タスクを追加する",
     "current tasks":"現在のタスク",
-    "new task":"新しい仕事"
+    "new task":"新しい仕事",
+    "admin page":"管理ページ",
+    "all users":"すべてのユーザー",
+    "ban user":"ユーザーを禁止する",
+    "unban user":"アンバンユーザー",
+    "you have been banned, please contact an administrator":"あなたは禁止されています。管理者に連絡してください"
 
 
 }

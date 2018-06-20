@@ -79,6 +79,9 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  @if(Auth::user()->role == 2)
+                                  <a class="dropdown-item" href="/admin">@lang('admin page')
+                                  @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -36,7 +36,12 @@
     "task":"tâche",
     "add task":"ajouter une tâche",
     "current tasks":"tâches en cours",
-    "new task":"nouvelle tâche"
+    "new task":"nouvelle tâche",
+    "admin page":"page d'administration",
+    "all users":"tous les utilisateurs",
+    "ban user":"utilisateur banni",
+    "unban user":"utilisateur non-banc",
+    "you have been banned, please contact an administrator":"vous avez été banni, contactez un administrateur"
 
 
 }

@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Auth;
 use Closure;
-use Carbon\Carbon;
-class Localization
+
+class UserRole
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,9 @@ class Localization
      */
     public function handle($request, Closure $next)
     {
-      if ( \Session::has('locale')) {
-        \App::setLocale(\Session::get('locale'));
-        Carbon::setLocale(\Session::get('locale'));
+      if(\Auth::user()->role == 3) {
+          return redirect('banned');
       }
-
-      return $next($request);
+        return $next($request);
     }
 }

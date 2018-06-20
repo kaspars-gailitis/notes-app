@@ -1,8 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
+use App\Note;
+use App\User;
+use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+
 
 class AdminController extends Controller
 {
@@ -13,7 +20,14 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+      if(Auth::user()->role == 2){
+        $users = User::where('id', "!=",Auth::user()->id)
+                  ->orderBy('name', 'ASC')
+                  ->get();
+        return view('admin_page', [
+            'users' => $users
+        ]);
+      } else {return redirect('/home'); }
     }
 
     /**
@@ -68,7 +82,18 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(Auth::user()->role == 2){
+          $user = User::findOrFail($id);
+          if($user->role == 1){
+            User::where('id',$id)
+                ->update(['role' => 3,]);
+          } if($user->role == 3){
+            User::where('id',$id)
+                ->update(['role' => 1,]);
+          }
+          return redirect('/admin'); 
+        }else {return redirect('/home'); }
+
     }
 
     /**
