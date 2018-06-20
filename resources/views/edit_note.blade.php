@@ -32,11 +32,13 @@
                     {{Form::textarea('body',$note->content,array('class' => 'form-control', 'placeholder'=>'content', 'id' => 'summernote'))}}
                     {{Form::label('tags', __('add tags (divided by comma)'))}}
                     {!!Form::text('tags',$tag->tag_content,array('class' => 'form-control', 'placeholder'=>'tag1, tag2...'))!!}
+                    </p>
                     <div class="text-right">
                       {!!Form::submit(__('update')) !!}
                     </div>
+
                     {!! Form::close() !!}
-                  </p>
+
                 </div>
             </div>
         </div>

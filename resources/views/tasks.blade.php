@@ -7,11 +7,11 @@
               <div class="card">
                   <div class="card-header">@lang('new task')</div>
                     <div class="card-body">
-                      <p class="card-text">
+
                         <form action="/store/2" method="POST" class="form-horizontal">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="task" class="col-sm-3 control-label">@lang('task')</label>
+                                <label class="col-sm-3 control-label">@lang('task')</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="name" id="task-name" class="form-control">
                                 </div>
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         </form>
-                      </p>
+                      
                     </div>
                   </div>
                       @if (count($tasks) > 0)

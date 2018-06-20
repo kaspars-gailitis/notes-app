@@ -70,7 +70,7 @@ class ClusterController extends Controller
       $cluster->save();
       $selectedNotes = $request->selectedNotes;
       foreach($selectedNotes as $noteId){
-        $currentNote = Note::where('id',(int)$noteId)->get();
+        $currentNote = Note::where('id', $noteId)->get();
         $clusterToNote = new ClusterToNote;
         $clusterToNote->Cluster()->associate($cluster);
         $clusterToNote->Note()->associate($currentNote[0]);
@@ -87,17 +87,18 @@ class ClusterController extends Controller
      */
     public function show($id)
     {
-      $cluster = Cluster::where('id', $id)->get();
-      if($cluster[0]->user_id == Auth::user()->id){
+      $cluster = Cluster::findOrFail($id);
+      if($cluster->user_id == Auth::user()->id){
         $notes = [];
-        $clusterToNotes = ClusterToNote::where('cluster_id', $cluster[0]->id)->get();
+        $clusterToNotes = ClusterToNote::where('cluster_id', $cluster->id)->get();
         foreach($clusterToNotes as $clusterToNote){
-          $note = Note::where('id', $clusterToNote->id)->get();
+          $note = Note::where('id', $clusterToNote->note_id)->get();
           array_push($notes, $note[0]);
         }
         return view('home', [
-            'title' => $cluster[0]->name,
-            'notes' => $notes
+            'title' => $cluster->name,
+            'notes' => $notes,
+            'cluster_id'=>$cluster->id
         ]);
       } else {return redirect('/home/2'); }
     }
@@ -133,6 +134,11 @@ class ClusterController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $cluster = Cluster::findOrFail($id);
+      if($cluster->user_id == Auth::user()->id){
+          ClusterToNote::where('cluster_id', $cluster->id)->delete();
+          $cluster->delete();
+          return redirect('/clusters');
+        }else {return redirect('/clusters');}
     }
 }

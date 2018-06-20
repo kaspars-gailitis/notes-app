@@ -35,11 +35,12 @@
                    {{ $note->title }}
                    <br>
                  @endforeach
+                 </p>
                   <div class="text-right">
                     {!!Form::submit(__('Create')) !!}
                   </div>
                   {!! Form::close() !!}
-                </p>
+
 
                   </div>
                 </div>

@@ -81,10 +81,10 @@
                             <a href="/set/fr">@lang('French') </a>
                             <a href="/set/en">@lang('English')</a>
                             <a href="/set/jp">@lang('Japanese')</a>
+                            </div>
                     @endauth
-
-                </div>
             @endif
         </div>
+      </div>
     </body>
 </html>

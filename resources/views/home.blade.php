@@ -44,9 +44,26 @@
                       </div>
                         @endforeach
                     @endif
-                </div>
-            </div>
-        </div>
-    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+@if(isset($title))
+  <br>
+  <div class = "text-right">
+    <div class = "container">
+    <div class="col-md-2 col-md-offset-8">
+    <form action="/delete/cluster/{{ $cluster_id }}" method="POST">
+      {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+        <button class="btn btn-default">
+      <i class="fa fa-plus"></i>@lang('delete')
+    </button>
+</form>
 </div>
+</div>
+</div>
+@endif
+
 @endsection
