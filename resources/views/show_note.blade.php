@@ -6,14 +6,14 @@
               <div class="card">
                 <div class="card-header">{{ $note->title }}</div>
                 <div class="card-body">
-                  <p class = "card-text">content: </p>
+                  <p class = "card-text">@lang('content'): </p>
                   <div class = "card">
                     <div class="card-body">
                     {!! $note->content !!}
                   </div>
                   </div>
                   <br>
-                  <p class= "card-text">tags: </p>
+                  <p class= "card-text">@lang('tags'): </p>
                   @foreach($tags as $tag)
                     <div class = "col-md-2">
                       <div class = "card">
@@ -37,7 +37,7 @@
               {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <button class="btn btn-default">
-              <i class="fa fa-plus"></i>delete
+              <i class="fa fa-plus"></i>@lang('delete')
             </button>
         </form>
       </div>
@@ -45,7 +45,7 @@
         <form action="/edit/{{ $note->id }}" method="POST">
           {{ csrf_field() }}
             <button class="btn btn-default">
-          <i class="fa fa-plus"></i>edit
+          <i class="fa fa-plus"></i>@lang('edit')
         </button>
     </form>
   </div>

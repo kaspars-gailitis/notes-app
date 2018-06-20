@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
           <div class="col-md-8">
               <div class="card">
-                <div class="card-header">create cluster</div>
+                <div class="card-header">@lang('create cluster')</div>
                 <div class="card-body">
                 @if (session('status'))
                     <div class="alert alert-success">
@@ -23,11 +23,11 @@
                   {!! Form::open(array('url' => 'cluster/new', 'method' => 'post')) !!}
                   {{ csrf_field() }}
                   <p class="card-text">
-                    {!! Form::label('title', 'title')!!}
+                    {!! Form::label('title', __('title'))!!}
                     {{Form::text('title',null,array('class' => 'form-control', 'placeholder'=>'title'))}}
                 </p>
                 <p class="card-text">
-                  {!! Form::label('selectedNotes[]', 'chose notes you want to group in a cluster:')!!}
+                  {!! Form::label('selectedNotes[]', __('choose notes you want to group in a cluster:'))!!}
 
                   @foreach($notes as $note)
                     <br>
@@ -36,7 +36,7 @@
                    <br>
                  @endforeach
                   <div class="text-right">
-                    {!!Form::submit('Create') !!}
+                    {!!Form::submit(__('Create')) !!}
                   </div>
                   {!! Form::close() !!}
                 </p>

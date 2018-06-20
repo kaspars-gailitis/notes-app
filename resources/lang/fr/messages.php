@@ -1,6 +1,7 @@
 <?php
 
 return [
-  'Welcome' => 'Bonjour!'
+  'Welcome' => 'Bonjour!',
+  'title'=>'titre'
 
 ];

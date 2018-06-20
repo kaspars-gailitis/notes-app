@@ -8,7 +8,7 @@
               @if(isset($title))<div class="card-header">{{ $title }}
               </div>
             @else
-                <div class="card-header">my notes
+                <div class="card-header">@lang('my notes')
                 </div>
                 @endif
                 <div class="card-body">
@@ -17,24 +17,24 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="col-md-2 col-md-offset-8">
+                    <div class="col-md-3 col-md-offset-7" style="padding-bottom: 10px;">
                     <form action="/home/2" method="GET">
                         <button class="btn btn-default">
-                      <i class="fa fa-plus"></i>sort by date
+                      <i class="fa fa-plus"></i>@lang('sort by date')
                     </button>
                 </form>
               </div>
             <div class="col-md-1">
                 <form action="/home/1" method="GET">
                     <button class="btn btn-default">
-                  <i class="fa fa-plus"></i>sort by name
+                  <i class="fa fa-plus"></i>@lang('sort by name')
                 </button>
             </form>
           </div>
           <br><br>
                     @if (count($notes) > 0)
                       @foreach ($notes as $note)
-                        <div class = "col-md-3">
+                        <div class = "col-md-3" style="padding-bottom: 20px;">
                           <div class="card">
                             <div class="card-header"><a href="{{ url('show', $note['id']) }}">{{ $note->title }}</a></div>
                             <div class="card-body">

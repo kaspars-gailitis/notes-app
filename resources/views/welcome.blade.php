@@ -72,12 +72,15 @@
                     @else
                       <div class="content">
                           <div class="title m-b-md">
-                            please login or register
+                            @lang('please login or register')
                             </div>
                             <div class="links">
-                            <a href="{{ route('login') }}">Login</a>
-                            <a href="{{ route('register') }}">Register</a>
-                          </div>
+                            <a href="{{ route('login') }}">@lang('Login')</a>
+                            <a href="{{ route('register') }}">@lang('Register')</a>
+                            <br><br>
+                            <a href="/set/fr">@lang('French') </a>
+                            <a href="/set/en">@lang('English')</a>
+                            <a href="/set/jp">@lang('Japanese')</a>
                     @endauth
 
                 </div>

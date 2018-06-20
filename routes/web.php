@@ -13,8 +13,10 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('set/{locale}', 'HomeController@userLocale')->middleware('auth');
-
+Route::get('set/{locale}', function ($locale) {
+  \Session::put('locale', $locale);
+  return redirect()->back();
+});
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,6 +24,9 @@ Route::get('/text', function (){
     return view('textTest');
 });
 Auth::routes();
+Route::get('/home', function(){
+    return redirect('home/2');
+})->middleware('auth');
 Route::get('/home/{sort}', 'NotesController@index')->middleware('auth');
 Route::get('new/note', 'NotesController@newNote')->middleware('auth');
 Route::get('show/{id}', 'NotesController@show')->middleware('auth');

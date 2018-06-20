@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">new note</div>
+                <div class="card-header">@lang('new note')</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -24,16 +24,16 @@
                     {!! Form::open(array('url' => url('update',$note->id), 'method' => 'put')) !!}
                     {{ csrf_field() }}
                     <p class="card-text">
-                      {!! Form::label('title', 'title')!!}
+                      {!! Form::label('title', __('title'))!!}
                       {{Form::text('title',$note->title,array('class' => 'form-control',))}}
                   </p>
                   <p class="card-text">
-                    {{Form::label('body', 'content')}}
+                    {{Form::label('body', __('content'))}}
                     {{Form::textarea('body',$note->content,array('class' => 'form-control', 'placeholder'=>'content', 'id' => 'summernote'))}}
-                    {{Form::label('tags', 'add tags (divided by comma)')}}
+                    {{Form::label('tags', __('add tags (divided by comma)'))}}
                     {!!Form::text('tags',$tag->tag_content,array('class' => 'form-control', 'placeholder'=>'tag1, tag2...'))!!}
                     <div class="text-right">
-                      {!!Form::submit('update') !!}
+                      {!!Form::submit(__('update')) !!}
                     </div>
                     {!! Form::close() !!}
                   </p>

@@ -33,7 +33,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel navbar-fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'notes') }}
+                    {{  __('notes') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -52,19 +52,22 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
-                          <li><a class="nav-link" href="{{ url('/clusters') }}">{{ __('clusters |') }}</a></li>
-                          <li><a class="nav-link" href="{{ url('tasks') }}">{{ __('my to-do list |') }}</a></li>
                           <li><a class="nav-link" href="{{ url('new/note') }}">{{ __('new note') }}</a></li>
+
+                          <li><a class="nav-link" href="{{ url('tasks') }}">{{ __('my to-do list') }}</a></li>
+                          <li><a class="nav-link" href="{{ url('/clusters') }}">{{ __('clusters') }}</a></li>
 
                         </ul>
                         <ul class="navbar-nav navbar-right">
                           <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                language <span class="caret"></span>
+                                @lang('language') <span class="caret"></span>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="/set/fr">French
+                                  <a class="dropdown-item" href="/set/fr">@lang('French')
                                   </a>
-                                  <a class="dropdown-item" href="/set/en">English
+                                  <a class="dropdown-item" href="/set/en">@lang('English')
+                                  </a>
+                                  <a class="dropdown-item" href="/set/jp">@lang('Japanese')
                                   </a>
                                 </div>
                             </a>
